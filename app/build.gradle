@@ -48,6 +48,9 @@ android {
 
 def koin_version = "3.4.2"
 def nav_version = "2.5.3"
+def retrofit_version = "2.9.0"
+def okhttp_version = "4.10.0"
+def coil_version = "2.2.2"
 
 dependencies {
 
@@ -63,6 +66,14 @@ dependencies {
 
     //navigation
     implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    //coil
+    implementation "io.coil-kt:coil-compose:$coil_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

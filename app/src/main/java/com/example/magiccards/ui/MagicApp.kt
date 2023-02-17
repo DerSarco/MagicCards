@@ -1,4 +1,4 @@
-package com.example.magiccards
+package com.example.magiccards.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme

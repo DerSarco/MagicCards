@@ -4,4 +4,7 @@
     <string name="mail">carlos.a.munoz2@outlook.com</string>
     <string name="welcomeButtonText">Ir a la App</string>
     <string name="navDescriptionText">Back Button</string>
+
+    <string name="API_URL">https://api.magicthegathering.io/v1/</string>
+    <string name="placeHolderLink">https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder-1024x1024.png</string>
 </resources>
