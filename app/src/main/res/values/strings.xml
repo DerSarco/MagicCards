@@ -3,4 +3,5 @@
     <string name="name">Carlos Andrés Muñoz Bustamante</string>
     <string name="mail">carlos.a.munoz2@outlook.com</string>
     <string name="welcomeButtonText">Ir a la App</string>
+    <string name="navDescriptionText">Back Button</string>
 </resources>

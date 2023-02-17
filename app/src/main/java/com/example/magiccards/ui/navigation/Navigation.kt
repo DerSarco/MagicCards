@@ -24,7 +24,9 @@ fun Navigation() {
                 }
             }
             composable("/cardlist"){
-                CardListView()
+                CardListView{
+                    navController.popBackStack()
+                }
             }
         }
     }
