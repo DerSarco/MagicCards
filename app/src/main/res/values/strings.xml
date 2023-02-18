@@ -16,4 +16,5 @@
     <string name="linkedin_uri">https://www.linkedin.com/in/cmunozbustamante/</string>
     <string name="data_error">Data not retrieved</string>
     <string name="generic_error_message">Something went wrong</string>
+    <string name="loading_message">Loading…</string>
 </resources>

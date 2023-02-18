@@ -16,6 +16,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import com.example.magiccards.R
 import com.example.magiccards.data.entities.LocalMagicCard
@@ -61,7 +62,7 @@ fun CardDetailView(
     }
 
     Scaffold(
-        topBar = { MyTopAppBar(title = localMagicCard!!.name, onUpClick = onUpClick) }
+        topBar = { MyTopAppBar(title = localMagicCard?.name ?: stringResource(R.string.loading_message), onUpClick = onUpClick) }
     ) { paddingValues ->
 
         if (error) {

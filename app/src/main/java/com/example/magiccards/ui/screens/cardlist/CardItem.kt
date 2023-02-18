@@ -2,6 +2,8 @@ package com.example.magiccards.ui.screens.cardlist
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,36 +15,49 @@ import com.example.magiccards.data.entities.LocalMagicCard
 import com.example.magiccards.ui.common.MyAsyncImage
 import com.example.magiccards.ui.theme.listItemImageSize
 import com.example.magiccards.ui.theme.lowPadding
+import com.example.magiccards.ui.theme.mediumPadding
 import com.example.magiccards.ui.theme.minPadding
 
 @Composable
 fun CardItem(localMagicCardData: LocalMagicCard, onItemClick: (id: String) -> Unit) {
     val context = LocalContext.current
-    Row(
+    Card(
         modifier = Modifier
             .clickable {
                 onItemClick(localMagicCardData.id)
             }
-            .padding(lowPadding),
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.Center
+            .padding(lowPadding)
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(lowPadding),
+        elevation = mediumPadding
     ) {
-        MyAsyncImage(url = localMagicCardData.imageUrl, imageSize = listItemImageSize, context = context)
-        Column(
+        Row(
             modifier = Modifier
-                .fillMaxHeight()
-                .padding(start = minPadding),
-            horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.Top
+                .padding(minPadding),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.Start
         ) {
-            Text(text = localMagicCardData.name, style = MaterialTheme.typography.h6)
-            Spacer(modifier = Modifier.padding(top = minPadding))
-            Text(
-                text = localMagicCardData.text,
-                style = MaterialTheme.typography.body2,
-                maxLines = 4,
-                overflow = TextOverflow.Ellipsis
+            MyAsyncImage(
+                url = localMagicCardData.imageUrl,
+                imageSize = listItemImageSize,
+                context = context
             )
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(start = minPadding),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Text(text = localMagicCardData.name, style = MaterialTheme.typography.h6)
+                Spacer(modifier = Modifier.padding(top = minPadding))
+                Text(
+                    text = localMagicCardData.text,
+                    style = MaterialTheme.typography.body2,
+                    maxLines = 4,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
         }
     }
 }
