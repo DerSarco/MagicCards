@@ -8,13 +8,13 @@ import com.example.magiccards.data.network.CardService
 import com.example.magiccards.data.network.entities.MagicCardNetwork
 import com.example.magiccards.data.network.entities.MagicCardsNetwork
 
-class CardsRepository(private val cardService: CardService) {
+class CardsRepository(private val cardService: CardService): CardInterface {
 
     private val cache = arrayListOf<LocalMagicCards>()
 
-    suspend fun getCards(
+    override suspend fun getCards(
         page: Int,
-    ): ApiResponse {
+    ): ApiResponse<List<LocalMagicCard>> {
         val find = cache.find {
             page == it.page
         }
@@ -43,20 +43,20 @@ class CardsRepository(private val cardService: CardService) {
         }
     }
 
-    suspend fun getCard(id: String): ApiResponse? {
+    override suspend fun getCard(id: String): ApiResponse<LocalMagicCard>? {
         var found: LocalMagicCard? = null
         for (cardList in cache) {
             found = cardList.localMagicCards.find { it.id == id }
         }
         return if (found != null) {
-            ApiResponse.SuccessSingleCard(found)
+            ApiResponse.Success(found)
         } else {
             try {
                 val cardResponse = cardService.getCard(id)
                 when (cardResponse.isSuccessful) {
                     true -> {
                         cardResponse.body()
-                            ?.let { ApiResponse.SuccessSingleCard(it.toSingleCardEntity()) }
+                            ?.let { ApiResponse.Success(it.toSingleCardEntity()) }
                     }
                     else -> {
                         ApiResponse.Error(cardResponse.code(), cardResponse.message())

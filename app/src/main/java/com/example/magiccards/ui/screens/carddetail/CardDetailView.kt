@@ -45,7 +45,7 @@ fun CardDetailView(
     }
     LaunchedEffect(Unit) {
         when (val response = viewModel.getCard(id)) {
-            is ApiResponse.SuccessSingleCard -> localMagicCard = response.data
+            is ApiResponse.Success -> localMagicCard = response.data
             is ApiResponse.Error -> {
                 error = true
                 Toast.makeText(context, response.message, Toast.LENGTH_SHORT).show()
