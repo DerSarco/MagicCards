@@ -1,10 +1,19 @@
 <resources>
-    <string name="app_name">MagicCards</string>
+    <string name="app_name">Magic The Gathering</string>
     <string name="name">Carlos Andrés Muñoz Bustamante</string>
     <string name="mail">carlos.a.munoz2@outlook.com</string>
     <string name="welcomeButtonText">Ir a la App</string>
     <string name="navDescriptionText">Back Button</string>
 
     <string name="API_URL">https://api.magicthegathering.io/v1/</string>
-    <string name="placeHolderLink">https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder-1024x1024.png</string>
+    <string name="placeHolderLink">https://d1rw89lz12ur5s.cloudfront.net/photo/alternateu/file/9008770e08ba47da9c232d6186f6e73d/MTG%20card%20back.jpg</string>
+    <string name="description_text">Description</string>
+    <string name="github_icon">Github</string>
+    <string name="discord_icon">Discord</string>
+    <string name="linkedin_icon">Linkedin</string>
+    <string name="github_uri">https://github.com/DerSarco</string>
+    <string name="discord_uri">https://discord.gg/kKXccQVK6t</string>
+    <string name="linkedin_uri">https://www.linkedin.com/in/cmunozbustamante/</string>
+    <string name="data_error">Data not retrieved</string>
+    <string name="generic_error_message">Something went wrong</string>
 </resources>

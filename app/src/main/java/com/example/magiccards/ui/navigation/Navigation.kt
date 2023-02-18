@@ -1,12 +1,9 @@
 package com.example.magiccards.ui.navigation
 
-import android.widget.ListView
 import androidx.compose.runtime.Composable
-import androidx.navigation.Navigation
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.example.magiccards.ui.screens.carddetail.CardDetailView
 import com.example.magiccards.ui.screens.cardlist.CardListView
@@ -37,12 +34,10 @@ fun Navigation() {
                 )
             }
             composable("/cardDetail/{id}") {
-                val name = it.arguments?.getString("id")
-                requireNotNull(name)
-                CardDetailView(name = name, onUpClick = { navController.popBackStack() })
+                val id = it.arguments?.getString("id")
+                requireNotNull(id)
+                CardDetailView(id = id, onUpClick = { navController.popBackStack() })
             }
         }
     }
-
-
 }

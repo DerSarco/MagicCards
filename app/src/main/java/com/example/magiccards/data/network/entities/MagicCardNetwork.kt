@@ -1,6 +1,6 @@
 package com.example.magiccards.data.network.entities
 
-data class Card(
+data class MagicCardNetwork(
     val artist: String,
     val cmc: Double,
     val colorIdentity: List<String>,

@@ -5,12 +5,13 @@ import android.content.Context
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
-import com.example.magiccards.ui.theme.listItemImageSize
+import com.example.magiccards.R
 import okhttp3.OkHttpClient
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
@@ -20,12 +21,15 @@ import javax.net.ssl.X509TrustManager
 
 
 @Composable
-fun MyAsyncImage(url: String, imageSize: Dp, context: Context) {
+fun MyAsyncImage(url: String?, imageSize: Dp, context: Context) {
     val untrustedImageLoader: ImageLoader = initUntrustImageLoader(context)
+    val cardImage = url
+        ?: stringResource(id = R.string.placeHolderLink)
 
     val request = ImageRequest.Builder(context)
-        .data(url)
+        .data(cardImage)
         .crossfade(true)
+
         .diskCachePolicy(CachePolicy.ENABLED)
         .build()
 

@@ -3,7 +3,7 @@ package com.example.magiccards.di
 import com.example.magiccards.data.network.ApiClient
 import com.example.magiccards.data.network.CardService
 import com.example.magiccards.data.repository.CardsRepository
-import com.example.magiccards.ui.screens.cardlist.CardListViewModel
+import com.example.magiccards.ui.viewmodel.CardListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

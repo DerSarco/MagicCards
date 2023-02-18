@@ -3,14 +3,12 @@ package com.example.magiccards.ui.screens.cardlist
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import com.example.magiccards.data.entities.Card
-import com.example.magiccards.data.entities.Cards
-import com.example.magiccards.data.entities.getColumnTestData
+import com.example.magiccards.data.entities.LocalMagicCard
 
 @Composable
-fun CardsList(cards: List<Card>, onItemClick: (String) -> Unit) {
+fun CardsList(localMagicCards: List<LocalMagicCard>, onItemClick: (String) -> Unit) {
     LazyColumn {
-        items(items = cards) { cardData ->
+        items(items = localMagicCards) { cardData ->
             CardItem(cardData, onItemClick)
         }
     }

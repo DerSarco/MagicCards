@@ -1,21 +1,25 @@
 package com.example.magiccards.ui.screens.cardlist
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.magiccards.ui.MagicApp
 import com.example.magiccards.R
-import com.example.magiccards.data.entities.Card
+import com.example.magiccards.data.entities.LocalMagicCard
+import com.example.magiccards.data.network.ApiResponse
+import com.example.magiccards.ui.common.MyErrorView
 import com.example.magiccards.ui.common.MyTopAppBar
+import com.example.magiccards.ui.viewmodel.CardListViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -24,12 +28,26 @@ fun CardListView(
     onUpClick: () -> Unit,
     viewModel: CardListViewModel = koinViewModel()
 ) {
-    var cardList by rememberSaveable {
-        mutableStateOf(emptyList<Card>())
+    val context = LocalContext.current
+    var localMagicCardList by rememberSaveable {
+        mutableStateOf(emptyList<LocalMagicCard>())
+    }
+    var error by rememberSaveable {
+        mutableStateOf(false)
     }
 
+
     LaunchedEffect(key1 = Unit) {
-        cardList = viewModel.getList()
+        when (val response = viewModel.getList()) {
+            is ApiResponse.Success -> localMagicCardList = response.data
+            is ApiResponse.Error -> {
+                error = true
+                Toast.makeText(context, response.message, Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     Scaffold(
         topBar = {
@@ -38,7 +56,10 @@ fun CardListView(
             }
         },
     ) { paddingValues ->
-        if (cardList.isEmpty()) {
+        if (error) {
+            MyErrorView()
+        }
+        if (localMagicCardList.isEmpty() && !error) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -48,14 +69,12 @@ fun CardListView(
             }
         } else {
             Column(modifier = Modifier.padding(paddingValues)) {
-                CardsList(cardList, onItemClick)
+                CardsList(localMagicCardList, onItemClick)
             }
         }
 
     }
 }
-
-
 @Preview
 @Composable
 fun CardListPrev() {
@@ -63,4 +82,3 @@ fun CardListPrev() {
         CardListView({}, {})
     }
 }
-
