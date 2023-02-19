@@ -55,6 +55,18 @@ fun Welcome(onClick: () -> Unit) {
             modifier = modifier
         )
 
+        Text(
+            text = stringResource(id = R.string.date),
+            fontSize = 24.sp,
+            modifier = modifier
+        )
+
+        Text(
+            text = stringResource(id = R.string.hours),
+            fontSize = 24.sp,
+            modifier = modifier
+        )
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -63,23 +75,29 @@ fun Welcome(onClick: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                modifier = Modifier.clickable {
-                    goToWeb(context.getString(R.string.github_uri), uriHandler)
-                }.size(maxPadding),
+                modifier = Modifier
+                    .clickable {
+                        goToWeb(context.getString(R.string.github_uri), uriHandler)
+                    }
+                    .size(maxPadding),
                 painter = painterResource(id = R.drawable.github),
                 contentDescription = stringResource(R.string.github_icon),
             )
             Icon(
-                modifier = Modifier.clickable {
-                    goToWeb(context.getString(R.string.discord_uri), uriHandler)
-                }.size(maxPadding),
+                modifier = Modifier
+                    .clickable {
+                        goToWeb(context.getString(R.string.discord_uri), uriHandler)
+                    }
+                    .size(maxPadding),
                 painter = painterResource(id = R.drawable.discord),
                 contentDescription = stringResource(R.string.discord_icon)
             )
             Icon(
-                modifier = Modifier.clickable {
-                    goToWeb(context.getString(R.string.linkedin_uri), uriHandler)
-                }.size(maxPadding),
+                modifier = Modifier
+                    .clickable {
+                        goToWeb(context.getString(R.string.linkedin_uri), uriHandler)
+                    }
+                    .size(maxPadding),
                 painter = painterResource(id = R.drawable.linkedin),
                 contentDescription = stringResource(R.string.linkedin_icon)
             )
