@@ -12,20 +12,20 @@ import com.example.magiccards.ui.screens.welcome.Welcome
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "welcome") {
+    NavHost(navController = navController, startDestination = startDestinationView) {
         navigation(
-            startDestination = "/welcome",
-            route = "welcome"
+            startDestination = "/$startDestinationView",
+            route = startDestinationView
         ) {
-            composable("/welcome") {
+            composable("/$startDestinationView") {
                 Welcome {
-                    navController.navigate("/cardList")
+                    navController.navigate("/$cardListDestinationView")
                 }
             }
-            composable("/cardList") {
+            composable("/$cardListDestinationView") {
                 CardListView(
                     onItemClick = {
-                        navController.navigate("/cardDetail/$it")
+                        navController.navigate("/$cardDetailDestinationView/$it")
                     },
                     onUpClick = {
                         navController.popBackStack()
@@ -33,7 +33,7 @@ fun Navigation() {
                     }
                 )
             }
-            composable("/cardDetail/{id}") {
+            composable("/$cardDetailDestinationView/{id}") {
                 val id = it.arguments?.getString("id")
                 requireNotNull(id)
                 CardDetailView(id = id, onUpClick = { navController.popBackStack() })
@@ -41,3 +41,7 @@ fun Navigation() {
         }
     }
 }
+
+private const val startDestinationView = "welcome"
+private const val cardListDestinationView = "cardList"
+private const val cardDetailDestinationView = "cardDetail"

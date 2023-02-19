@@ -1,7 +1,7 @@
 package com.example.magiccards.di
 
 import com.example.magiccards.data.network.CardService
-import com.example.magiccards.data.repository.CardsRepository
+import com.example.magiccards.data.repository.DefaultCardsRepository
 import com.example.magiccards.ui.viewmodel.CardListViewModel
 import org.junit.After
 import org.junit.Rule
@@ -24,14 +24,14 @@ class KoinDependencyTest : KoinTest {
     }
 
     @After
-    fun tearDown(){
+    fun tearDown() {
         stopKoin()
     }
 
     @OptIn(KoinExperimentalAPI::class)
     @Test
     fun `check all modules`() {
-        appModule.verify()
+        appModule.verify(extraTypes = listOf(com.example.magiccards.data.repository.CardRepository::class))
     }
 
     @Test
@@ -46,6 +46,6 @@ class KoinDependencyTest : KoinTest {
 
     @Test
     fun `repository should be Injected by Koin`() {
-        assertNotNull(get<CardsRepository>())
+        assertNotNull(get<DefaultCardsRepository>())
     }
 }

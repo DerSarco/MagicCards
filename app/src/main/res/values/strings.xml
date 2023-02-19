@@ -17,4 +17,7 @@
     <string name="data_error">Data not retrieved</string>
     <string name="generic_error_message">Something went wrong</string>
     <string name="loading_message">Loading…</string>
+    <string name="developer_text">Developer</string>
+    <string name="mana_cost_text">Mana Cost:</string>
+    <string name="rarity_text">Rarity:</string>
 </resources>

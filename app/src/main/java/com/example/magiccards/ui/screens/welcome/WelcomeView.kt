@@ -41,7 +41,7 @@ fun Welcome(onClick: () -> Unit) {
                 .size(detailViewImageSize)
                 .clip(RoundedCornerShape(12.dp)),
             painter = painterResource(id = R.drawable.dev),
-            contentDescription = "Developer"
+            contentDescription = stringResource(R.string.developer_text)
         )
 
         Text(

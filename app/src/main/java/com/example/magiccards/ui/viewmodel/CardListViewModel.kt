@@ -1,26 +1,19 @@
 package com.example.magiccards.ui.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.magiccards.data.entities.LocalMagicCard
+import com.example.magiccards.data.entities.MagicCardEntity
 import com.example.magiccards.data.network.ApiResponse
-import com.example.magiccards.data.repository.CardInterface
+import com.example.magiccards.data.repository.CardRepository
 
 class CardListViewModel(
-    private val repository: CardInterface
+    private val repository: CardRepository
 ) : ViewModel() {
 
-    private val page = MutableLiveData(1)
-
-    suspend fun getList(): ApiResponse<List<LocalMagicCard>> {
-        return repository.getCards(page.value!!)
+    suspend fun getList(): ApiResponse<List<MagicCardEntity>> {
+        return repository.getCards()
     }
 
-    fun nextPage() {
-        page.postValue(page.value?.plus(1))
-    }
-
-    suspend fun getCard(id: String): ApiResponse<LocalMagicCard>? {
+    suspend fun getCard(id: String): ApiResponse<MagicCardEntity>? {
         return repository.getCard(id)
     }
 }

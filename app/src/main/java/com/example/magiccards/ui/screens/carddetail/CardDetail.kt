@@ -8,12 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.example.magiccards.R
-import com.example.magiccards.data.entities.LocalMagicCard
+import com.example.magiccards.data.entities.MagicCardEntity
 import com.example.magiccards.ui.theme.mediumPadding
 import com.example.magiccards.ui.theme.minPadding
 
 @Composable
-fun CardDetail(localMagicCard: LocalMagicCard) {
+fun CardDetail(localMagicCard: MagicCardEntity) {
     Column(
         modifier = Modifier
             .padding(minPadding)
@@ -31,12 +31,12 @@ fun CardDetail(localMagicCard: LocalMagicCard) {
         )
         Spacer(modifier = Modifier.height(mediumPadding))
         Text(
-            text = "Mana Cost: ${localMagicCard.manaCost}",
+            text = stringResource(R.string.mana_cost_text).plus(" ${localMagicCard.manaCost}"),
             style = MaterialTheme.typography.caption
         )
         Spacer(modifier = Modifier.height(mediumPadding))
         Text(
-            text = "Rarity: ${localMagicCard.rarity}",
+            text = stringResource(R.string.rarity_text).plus(" ${localMagicCard.rarity}"),
             style = MaterialTheme.typography.caption
         )
     }

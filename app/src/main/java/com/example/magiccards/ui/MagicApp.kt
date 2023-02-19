@@ -10,7 +10,6 @@ import com.example.magiccards.ui.theme.MagicCardsTheme
 @Composable
 fun MagicApp(content: @Composable () -> Unit) {
     MagicCardsTheme {
-        // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background

@@ -17,14 +17,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.sp
 import com.example.magiccards.R
-import com.example.magiccards.data.entities.LocalMagicCard
+import com.example.magiccards.data.entities.MagicCardEntity
 import com.example.magiccards.data.network.ApiResponse
 import com.example.magiccards.ui.common.MyAsyncImage
 import com.example.magiccards.ui.common.MyCircularProgress
 import com.example.magiccards.ui.common.MyErrorView
 import com.example.magiccards.ui.common.MyTopAppBar
+import com.example.magiccards.ui.theme.defaultFontSize
 import com.example.magiccards.ui.theme.detailViewImageSize
 import com.example.magiccards.ui.theme.mediumPadding
 import com.example.magiccards.ui.viewmodel.CardListViewModel
@@ -38,7 +38,7 @@ fun CardDetailView(
 ) {
     val context = LocalContext.current
     var localMagicCard by rememberSaveable {
-        mutableStateOf<LocalMagicCard?>(null)
+        mutableStateOf<MagicCardEntity?>(null)
     }
     var error by rememberSaveable {
         mutableStateOf(false)
@@ -48,7 +48,8 @@ fun CardDetailView(
             is ApiResponse.Success -> localMagicCard = response.data
             is ApiResponse.Error -> {
                 error = true
-                Toast.makeText(context, response.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "${response.code}: ${response.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
             else -> {
                 error = true
@@ -62,9 +63,13 @@ fun CardDetailView(
     }
 
     Scaffold(
-        topBar = { MyTopAppBar(title = localMagicCard?.name ?: stringResource(R.string.loading_message), onUpClick = onUpClick) }
+        topBar = {
+            MyTopAppBar(
+                title = localMagicCard?.name ?: stringResource(R.string.loading_message),
+                onUpClick = onUpClick
+            )
+        }
     ) { paddingValues ->
-
         if (error) {
             MyErrorView()
         }
@@ -87,7 +92,7 @@ fun CardDetailView(
                     Text(
                         text = "Artist: ${localMagicCard!!.artist}",
                         style = MaterialTheme.typography.caption,
-                        fontSize = 14.sp
+                        fontSize = defaultFontSize
                     )
                     CardDetail(localMagicCard!!)
                 }

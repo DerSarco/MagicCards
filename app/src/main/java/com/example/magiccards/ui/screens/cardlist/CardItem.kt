@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
-import com.example.magiccards.data.entities.LocalMagicCard
+import com.example.magiccards.data.entities.MagicCardEntity
 import com.example.magiccards.ui.common.MyAsyncImage
 import com.example.magiccards.ui.theme.listItemImageSize
 import com.example.magiccards.ui.theme.lowPadding
@@ -19,7 +19,7 @@ import com.example.magiccards.ui.theme.mediumPadding
 import com.example.magiccards.ui.theme.minPadding
 
 @Composable
-fun CardItem(localMagicCardData: LocalMagicCard, onItemClick: (id: String) -> Unit) {
+fun CardItem(localMagicCardData: MagicCardEntity, onItemClick: (id: String) -> Unit) {
     val context = LocalContext.current
     Card(
         modifier = Modifier

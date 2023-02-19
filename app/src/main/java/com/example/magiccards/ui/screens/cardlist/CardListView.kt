@@ -15,7 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.magiccards.ui.MagicApp
 import com.example.magiccards.R
-import com.example.magiccards.data.entities.LocalMagicCard
+import com.example.magiccards.data.entities.MagicCardEntity
 import com.example.magiccards.data.network.ApiResponse
 import com.example.magiccards.ui.common.MyErrorView
 import com.example.magiccards.ui.common.MyTopAppBar
@@ -30,7 +30,7 @@ fun CardListView(
 ) {
     val context = LocalContext.current
     var localMagicCardList by rememberSaveable {
-        mutableStateOf(emptyList<LocalMagicCard>())
+        mutableStateOf(emptyList<MagicCardEntity>())
     }
     var error by rememberSaveable {
         mutableStateOf(false)
@@ -43,9 +43,6 @@ fun CardListView(
             is ApiResponse.Error -> {
                 error = true
                 Toast.makeText(context, response.message, Toast.LENGTH_SHORT).show()
-            }
-            else -> {
-                Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
     }
