@@ -1,4 +1,4 @@
-# Magic The Gathering Hiberus
+# Magic The Gathering
 
 ### Hello!
 
