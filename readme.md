@@ -2,7 +2,7 @@
 
 ### Hello!
 
-This is my code challenge for Hiberus, i used the "Magic The Gathering" API, it has 3 screens:
+This is my code challenge for (?), i used the "Magic The Gathering" API, it has 3 screens:
  
  - Welcome View
  - Card List View
